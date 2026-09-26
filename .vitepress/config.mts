@@ -10,8 +10,7 @@ export default defineConfig({
     nav: [
       { text: 'Bio', link: 'https://akari.nx.kg' },
       { text: 'Hub', link: '/' },
-      { text: 'Notes', link: '/notes/' },
-      { text: 'Go Links', link: '/go/' }
+      { text: 'Notes', link: '/notes/' }
     ],
     sidebar: {
       '/notes/': [
