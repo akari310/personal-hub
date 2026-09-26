@@ -55,7 +55,9 @@ const handleSearch = () => {
   width: 100%;
   display: flex;
   align-items: center;
-  background: #2b2b2b; /* Dark mode background */
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /* Dark mode background */
   border-radius: 24px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
   padding: 0 14px;
@@ -65,7 +67,7 @@ const handleSearch = () => {
 }
 
 .search-bar:hover, .search-bar:focus-within {
-  background: #333333;
+  background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
   border-color: rgba(255, 255, 255, 0.15);
 }

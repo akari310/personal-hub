@@ -329,10 +329,10 @@ async function addLink() {
   justify-content: flex-start;
   gap: 12px;
   padding: 8px 16px 8px 8px;
-  background: rgba(30, 30, 46, 0.45);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 100px; /* Pill shape */
   text-decoration: none;
   color: #cdd6f4;
@@ -343,9 +343,9 @@ async function addLink() {
 
 .bento-card:hover {
   transform: translateY(-3px) scale(1.02);
-  background: rgba(49, 50, 68, 0.7);
-  border-color: rgba(203, 166, 247, 0.4);
-  box-shadow: 0 8px 20px rgba(203, 166, 247, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .bento-icon-img {
@@ -402,9 +402,9 @@ async function addLink() {
   gap: 8px;
   height: 40px;
   padding: 0 18px;
-  background: rgba(30, 30, 46, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 100px;
   color: #cdd6f4;
@@ -416,8 +416,8 @@ async function addLink() {
 }
 
 .hub-btn:hover {
-  background: rgba(203, 166, 247, 0.25);
-  border-color: rgba(203, 166, 247, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
   color: #fff;
   transform: translateY(-2px);
 }
@@ -447,9 +447,9 @@ async function addLink() {
   align-items: center;
   gap: 8px;
   padding: 6px 12px;
-  background: rgba(30, 30, 46, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 100px;
   text-decoration: none;
