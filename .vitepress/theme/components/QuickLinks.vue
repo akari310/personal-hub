@@ -93,25 +93,27 @@ onMounted(() => {
     </div>
 
     <!-- Centered Add Link Modal -->
-    <transition name="fade">
-      <div v-if="showAddModal" class="modal-overlay" @click.self="showAddModal = false">
-        <div class="modal">
-          <h2>Thêm liên kết mới</h2>
-          <div class="form-group">
-            <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">Tên web</label>
-            <input v-model="newName" type="text" placeholder="VD: Github" />
-          </div>
-          <div class="form-group">
-            <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">URL</label>
-            <input v-model="newUrl" type="url" placeholder="https://..." />
-          </div>
-          <div class="modal-actions" style="display:flex; justify-content:flex-end; gap: 12px; margin-top: 24px;">
-            <button @click="showAddModal = false" class="btn-cancel" style="padding: 10px 20px; background: rgba(255,255,255,0.05); border: none; border-radius: 8px; color: #fff; cursor: pointer;">Hủy</button>
-            <button @click="addLink" class="btn-save">Lưu Liên kết</button>
+    <Teleport to="body">
+      <transition name="fade">
+        <div v-if="showAddModal" class="modal-overlay" @click.self="showAddModal = false">
+          <div class="modal">
+            <h2>Thêm liên kết mới</h2>
+            <div class="form-group">
+              <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">Tên web</label>
+              <input v-model="newName" type="text" placeholder="VD: Github" />
+            </div>
+            <div class="form-group">
+              <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">URL</label>
+              <input v-model="newUrl" type="url" placeholder="https://..." />
+            </div>
+            <div class="modal-actions" style="display:flex; justify-content:flex-end; gap: 12px; margin-top: 24px;">
+              <button @click="showAddModal = false" class="btn-cancel" style="padding: 10px 20px; background: rgba(255,255,255,0.05); border: none; border-radius: 8px; color: #fff; cursor: pointer;">Hủy</button>
+              <button @click="addLink" class="btn-save">Lưu Liên kết</button>
+            </div>
           </div>
         </div>
-      </div>
-    </transition>
+      </transition>
+    </Teleport>
   </div>
 </template>
 
