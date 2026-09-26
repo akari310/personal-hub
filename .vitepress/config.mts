@@ -1,6 +1,9 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  router: {
+    prefetchLinks: false
+  },
   title: "Personal Hub",
   description: "Startpage & Cheatsheet",
   themeConfig: {
