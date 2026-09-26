@@ -165,7 +165,7 @@ import QuickLinks from './QuickLinks.vue'
   gap: 8px;
   height: 40px;
   padding: 0 18px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -179,8 +179,8 @@ import QuickLinks from './QuickLinks.vue'
 }
 
 .hub-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
   color: #fff;
   text-shadow: 0 1px 4px rgba(0,0,0,0.8);
   transform: translateY(-2px);
@@ -214,7 +214,7 @@ import QuickLinks from './QuickLinks.vue'
   height: 40px;
   box-sizing: border-box;
   padding: 0 12px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -227,8 +227,8 @@ import QuickLinks from './QuickLinks.vue'
 }
 
 .weather-widget:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
   color: #fff;
   text-shadow: 0 1px 4px rgba(0,0,0,0.8);
   transform: translateY(-2px);
