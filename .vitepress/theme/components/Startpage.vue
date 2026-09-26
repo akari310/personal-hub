@@ -4,6 +4,7 @@ import SearchBar from './SearchBar.vue'
 
 const links = ref([])
 const isAdmin = ref(false)
+const showSettingsPanel = ref(false)
 const showAddModal = ref(false)
 const githubToken = ref('')
 const newName = ref('')
@@ -105,8 +106,12 @@ async function fetchLinks() {
 }
 
 function openSettings() {
+  showSettingsPanel.value = true
+}
+
+function openAddModal() {
   if (!githubToken.value) {
-    const token = prompt('Enter Admin Token to Unlock Settings:')
+    const token = prompt('Enter Admin Token to Add Link:')
     if (token) {
       localStorage.setItem('gh_admin_token', token)
       githubToken.value = token
@@ -214,16 +219,20 @@ async function addLink() {
             <img :src="`https://www.google.com/s2/favicons?domain=${link.url}&sz=128`" :alt="link.name" class="bento-icon-img" />
             <span class="bento-name">{{ link.name }}</span>
           </a>
+          <button class="bento-card add-btn" @click="openAddModal">
+            <span class="bento-icon-img add-icon">➕</span>
+            <span class="bento-name">Thêm link</span>
+          </button>
         </div>
       </div>
     </div>
     
     <!-- Edge Style Settings Panel -->
     <transition name="slide-right">
-      <div v-if="showAddModal" class="settings-panel">
+      <div v-if="showSettingsPanel" class="settings-panel">
         <div class="panel-header">
           <h2>Cài đặt trang</h2>
-          <button class="close-btn" @click="showAddModal = false">
+          <button class="close-btn" @click="showSettingsPanel = false">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </button>
         </div>
@@ -245,15 +254,26 @@ async function addLink() {
             </label>
           </div>
 
-          <div class="settings-section">
-            <h3 style="margin-top: 16px; font-size: 0.95rem;">Thêm liên kết (Tùy chỉnh Edge)</h3>
-            <div class="form-group">
-              <input v-model="newName" type="text" placeholder="Tên web (VD: Github)" />
-            </div>
-            <div class="form-group">
-              <input v-model="newUrl" type="url" placeholder="URL (https://...)" />
-            </div>
-            <button @click="addLink" class="btn-save" style="width: 100%">Lưu Liên kết</button>
+        </div>
+      </div>
+    </transition>
+
+    <!-- Centered Add Link Modal -->
+    <transition name="fade">
+      <div v-if="showAddModal" class="modal-overlay" @click.self="showAddModal = false">
+        <div class="modal">
+          <h2>Thêm liên kết mới</h2>
+          <div class="form-group">
+            <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">Tên web</label>
+            <input v-model="newName" type="text" placeholder="VD: Github" />
+          </div>
+          <div class="form-group">
+            <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">URL</label>
+            <input v-model="newUrl" type="url" placeholder="https://..." />
+          </div>
+          <div class="modal-actions" style="display:flex; justify-content:flex-end; gap: 12px; margin-top: 24px;">
+            <button @click="showAddModal = false" class="btn-cancel" style="padding: 10px 20px; background: rgba(255,255,255,0.05); border: none; border-radius: 8px; color: #fff; cursor: pointer;">Hủy</button>
+            <button @click="addLink" class="btn-save">Lưu Liên kết</button>
           </div>
         </div>
       </div>
@@ -610,3 +630,32 @@ input:checked + .slider:before { transform: translateX(18px); }
 
 .icon-btn { width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; flex-shrink: 0; }
 
+
+/* Modal Overlay for Add Link */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10001;
+}
+
+.modal {
+  background: rgba(36, 36, 36, 0.95);
+  padding: 32px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+  transform: scale(0.95);
+  animation: modalIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  color: #fff;
+}
+@keyframes modalIn { to { transform: scale(1); } }
+.modal h2 { margin-top: 0; margin-bottom: 24px; font-size: 1.3rem; font-weight: 600; }
+.fade-enter-active, .fade-leave-active { transition: opacity 0.3s; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
