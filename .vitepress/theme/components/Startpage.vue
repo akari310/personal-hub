@@ -61,8 +61,7 @@ async function addLink() {
   
   const newLink = {
     name: newName.value,
-    url: newUrl.value,
-    icon: newIcon.value || '🔗'
+    url: newUrl.value
   }
 
   const updatedLinks = [...links.value, newLink]
@@ -137,12 +136,12 @@ async function addLink() {
       <div class="bookmarks-section" v-if="links.length > 0 || isAdmin">
         <div class="bento-grid">
           <a v-for="link in links" :key="link.url" :href="link.url" target="_blank" class="bento-card">
-            <span class="bento-icon">{{ link.icon }}</span>
+            <img :src="`https://www.google.com/s2/favicons?domain=${link.url}&sz=128`" :alt="link.name" class="bento-icon-img" />
             <span class="bento-name">{{ link.name }}</span>
           </a>
           
           <button v-if="isAdmin" class="bento-card add-btn" @click="showAddModal = true">
-            <span class="bento-icon">➕</span>
+            <span class="bento-icon-img add-icon">➕</span>
             <span class="bento-name">Add New</span>
           </button>
         </div>
@@ -154,10 +153,6 @@ async function addLink() {
       <div v-if="showAddModal" class="modal-overlay" @click.self="showAddModal = false">
         <div class="modal">
           <h2>Add Quick Link</h2>
-          <div class="form-group">
-            <label>Icon (Emoji)</label>
-            <input v-model="newIcon" type="text" placeholder="🔗" />
-          </div>
           <div class="form-group">
             <label>Name</label>
             <input v-model="newName" type="text" placeholder="e.g. My Repo" />
@@ -261,14 +256,29 @@ async function addLink() {
   box-shadow: 0 12px 24px rgba(203, 166, 247, 0.2);
 }
 
-.bento-icon {
-  font-size: 2rem;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+.bento-icon-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: cover;
   transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  background-color: white; /* fallback for transparent favicons */
+  padding: 4px; /* padding for the white bg */
 }
 
-.bento-card:hover .bento-icon {
+.bento-card:hover .bento-icon-img {
   transform: scale(1.1);
+}
+
+.add-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background-color: transparent;
+  box-shadow: none;
+  padding: 0;
 }
 
 .bento-name {
