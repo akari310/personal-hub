@@ -104,10 +104,11 @@ import QuickLinks from './QuickLinks.vue'
 
 .bento-card:hover {
   transform: translateY(-3px) scale(1.02);
-  background: rgba(255, 255, 255, 0.9);
-  border-color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  color: #11111b;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
 }
 
 .bento-icon-img {
@@ -178,9 +179,10 @@ import QuickLinks from './QuickLinks.vue'
 }
 
 .hub-btn:hover {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(255, 255, 255, 1);
-  color: #11111b;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
   transform: translateY(-2px);
 }
 
@@ -222,9 +224,10 @@ import QuickLinks from './QuickLinks.vue'
 }
 
 .weather-widget:hover {
-  background: rgba(255, 255, 255, 0.85);
-  color: #11111b;
-  border-color: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
   transform: translateY(-2px);
 }
 

@@ -87,9 +87,8 @@ onMounted(() => {
         <img :src="`https://www.google.com/s2/favicons?domain=${link.url}&sz=128`" :alt="link.name" class="bento-icon-img" />
         <span class="bento-name">{{ link.name }}</span>
       </a>
-      <button class="bento-card add-btn" @click="openAddModal">
+      <button class="bento-card add-btn" @click="openAddModal" title="Thêm liên kết" style="min-width: 0; width: 48px; height: 48px; padding: 0; justify-content: center; border-radius: 50%;">
         <span class="bento-icon-img add-icon">➕</span>
-        <span class="bento-name">Thêm link</span>
       </button>
     </div>
 

@@ -67,18 +67,20 @@ const handleSearch = () => {
 }
 
 .search-bar:hover, .search-bar:focus-within {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-  border-color: rgba(255, 255, 255, 1);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 .search-bar:hover .search-input, .search-bar:focus-within .search-input {
-  color: #11111b;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
 }
 .search-bar:hover .search-input::placeholder, .search-bar:focus-within .search-input::placeholder {
-  color: #5c5f77;
+  color: rgba(255, 255, 255, 0.8);
 }
 .search-bar:hover .search-icon, .search-bar:focus-within .search-icon {
-  color: #11111b;
+  color: #fff;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.8));
 }
 
 
