@@ -76,7 +76,8 @@ const handleSearch = () => {
   text-shadow: 0 1px 4px rgba(0,0,0,0.8);
 }
 .search-bar:hover .search-input::placeholder, .search-bar:focus-within .search-input::placeholder {
-  color: rgba(255, 255, 255, 0.8);
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.9);
 }
 .search-bar:hover .search-icon, .search-bar:focus-within .search-icon {
   color: #fff;
