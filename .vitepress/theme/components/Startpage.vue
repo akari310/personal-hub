@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import SearchBar from './SearchBar.vue'
 
 const links = ref([])
@@ -8,6 +8,15 @@ const showAddModal = ref(false)
 const githubToken = ref('')
 const newName = ref('')
 const newUrl = ref('')
+
+const showWeather = ref(typeof localStorage !== 'undefined' ? localStorage.getItem('showWeather') !== 'false' : true)
+const showLinks = ref(typeof localStorage !== 'undefined' ? localStorage.getItem('showLinks') !== 'false' : true)
+
+if (typeof window !== 'undefined') {
+  watch(showWeather, (val) => localStorage.setItem('showWeather', val.toString()))
+  watch(showLinks, (val) => localStorage.setItem('showLinks', val.toString()))
+}
+
 const newIcon = ref('🔗')
 const repoOwner = 'akari310'
 const repoName = 'personal-hub'
@@ -169,7 +178,7 @@ async function addLink() {
 <template>
   <div class="startpage-overlay">
     <!-- Clock and Weather (Top Left) -->
-    <div class="top-left-widget">
+    <div v-if="showWeather" class="top-left-widget">
       <div class="clock-display">{{ timeString }}</div>
       <a :href="msnLink" target="_blank" class="weather-widget">
         <span class="weather-location">Yên Bái</span>
@@ -199,7 +208,7 @@ async function addLink() {
       </div>
 
       <!-- Quick Links Grid integrated smoothly -->
-      <div class="bookmarks-section" v-if="links.length > 0">
+      <div class="bookmarks-section" v-if="showLinks && links.length > 0">
         <div class="bento-grid">
           <a v-for="link in links" :key="link.url" :href="link.url" target="_blank" class="bento-card">
             <img :src="`https://www.google.com/s2/favicons?domain=${link.url}&sz=128`" :alt="link.name" class="bento-icon-img" />
@@ -209,27 +218,42 @@ async function addLink() {
       </div>
     </div>
     
-    <!-- Settings / Add Link Modal -->
-    <transition name="fade">
-      <div v-if="showAddModal" class="modal-overlay" @click.self="showAddModal = false">
-        <div class="modal">
-          <h2>Page Settings</h2>
-          
-          <div class="settings-section">
-            <h3>Add Quick Link</h3>
-            <div class="form-group">
-              <label>Name</label>
-              <input v-model="newName" type="text" placeholder="e.g. My Repo" />
-            </div>
-            <div class="form-group">
-              <label>URL</label>
-              <input v-model="newUrl" type="url" placeholder="https://..." />
-            </div>
+    <!-- Edge Style Settings Panel -->
+    <transition name="slide-right">
+      <div v-if="showAddModal" class="settings-panel">
+        <div class="panel-header">
+          <h2>Cài đặt trang</h2>
+          <button class="close-btn" @click="showAddModal = false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        
+        <div class="panel-content">
+          <div class="setting-item">
+            <span>Hiển thị thời tiết</span>
+            <label class="toggle-switch">
+              <input type="checkbox" v-model="showWeather">
+              <span class="slider"></span>
+            </label>
           </div>
           
-          <div class="modal-actions">
-            <button @click="showAddModal = false" class="btn-cancel">Close</button>
-            <button @click="addLink" class="btn-save">Add Link</button>
+          <div class="setting-item">
+            <span>Các liên kết nhanh</span>
+            <label class="toggle-switch">
+              <input type="checkbox" v-model="showLinks">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="settings-section">
+            <h3 style="margin-top: 16px; font-size: 0.95rem;">Thêm liên kết (Tùy chỉnh Edge)</h3>
+            <div class="form-group">
+              <input v-model="newName" type="text" placeholder="Tên web (VD: Github)" />
+            </div>
+            <div class="form-group">
+              <input v-model="newUrl" type="url" placeholder="URL (https://...)" />
+            </div>
+            <button @click="addLink" class="btn-save" style="width: 100%">Lưu Liên kết</button>
           </div>
         </div>
       </div>
@@ -451,134 +475,132 @@ async function addLink() {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Modal */
-.modal-overlay {
+/* Settings Panel (Edge Style) */
+.settings-panel {
   position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(12px);
+  top: 72px;
+  right: 16px;
+  width: 320px;
+  background: rgba(36, 36, 36, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  color: #fff;
+  z-index: 10000;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  z-index: 9999;
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.modal {
-  background: #1e1e2e;
-  padding: 32px;
-  border-radius: 24px;
-  width: 90%;
-  max-width: 400px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 24px 48px rgba(0,0,0,0.4);
-  transform: scale(0.95);
-  animation: modalIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-  text-align: left;
+.panel-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-@keyframes modalIn {
-  to { transform: scale(1); }
+.close-btn {
+  background: transparent;
+  border: none;
+  color: #a6adc8;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.close-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+.panel-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.modal h2 {
-  margin-top: 0;
-  margin-bottom: 24px;
-  color: #cdd6f4;
-  font-size: 1.5rem;
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
 }
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255,255,255,0.2);
+  transition: .3s;
+  border-radius: 22px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+input:checked + .slider { background-color: #0078d4; }
+input:checked + .slider:before { transform: translateX(18px); }
+
+.slide-right-enter-active, .slide-right-leave-active { transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
+.slide-right-enter-from, .slide-right-leave-to { opacity: 0; transform: translateX(20px); }
 
 .form-group {
-  margin-bottom: 16px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  color: #a6adc8;
-  font-size: 0.9rem;
-  font-weight: 500;
+  margin-bottom: 12px;
 }
 
 .form-group input {
   width: 100%;
-  padding: 12px 16px;
-  background: #11111b;
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  color: #cdd6f4;
+  border-radius: 8px;
+  color: #fff;
   outline: none;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: border-color 0.2s;
   box-sizing: border-box;
 }
 
 .form-group input:focus {
-  border-color: #cba6f7;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 30px;
-}
-
-.btn-cancel {
-  padding: 10px 20px;
-  background: rgba(255,255,255,0.05);
-  border: none;
-  border-radius: 10px;
-  color: #cdd6f4;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.2s;
-}
-
-.btn-cancel:hover {
-  background: rgba(255,255,255,0.1);
+  border-color: #0078d4;
 }
 
 .btn-save {
   padding: 10px 24px;
-  background: #cba6f7;
-  color: #11111b;
+  background: #0078d4;
+  color: #fff;
   border: none;
-  border-radius: 10px;
-  font-weight: 700;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
+  transition: opacity 0.2s;
 }
 
 .btn-save:hover {
-  background: #b4befe;
-  transform: translateY(-2px);
+  opacity: 0.9;
 }
 
-.icon-btn {
-  width: 38px;
-  height: 38px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
-.settings-section h3 {
-  font-size: 1.05rem;
-  color: #cdd6f4;
-  margin-top: 0;
-  margin-bottom: 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  padding-bottom: 8px;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s;
-}
-.fade-enter-from, .fade-leave-to {
-  opacity: 0;
-}
 </style>
