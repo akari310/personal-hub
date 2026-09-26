@@ -33,4 +33,5 @@ https://go.akari.nx.kg/chatgpt      https://chatgpt.com 302
 https://go.akari.nx.kg/             https://home.akari.nx.kg 302
 
 # Chuyển hướng cho note subdomain: tự động đẩy vào thư mục /notes/ của trang chủ
+https://note.akari.nx.kg/           https://home.akari.nx.kg/notes/ 301
 https://note.akari.nx.kg/*          https://home.akari.nx.kg/notes/:splat 301
