@@ -1,0 +1,6 @@
+# Cloudflare Pages Redirect Rules
+/go/gh      https://github.com/your-username            302
+/go/fb      https://facebook.com/your-profile           302
+/go/meet    https://meet.google.com/your-custom-room    302
+/go/cf      https://dash.cloudflare.com                 302
+/go/*       /                                           302

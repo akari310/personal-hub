@@ -1,0 +1,8 @@
+# Cloudflare Pages Redirect Rules (Works directly on go.tenban.nx.kg/*)
+/gh         https://github.com/your-username            302
+/fb         https://facebook.com/your-profile           302
+/meet       https://meet.google.com/your-custom-room    302
+/cf         https://dash.cloudflare.com                 302
+
+# Fallback for the go subdomain if they just visit go.tenban.nx.kg
+/           https://home.tenban.nx.kg                   302

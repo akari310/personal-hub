@@ -1,0 +1,14 @@
+:root {
+  --vp-c-brand-1: #3eaf7c;
+  --vp-c-brand-2: #3aa675;
+  --vp-c-brand-3: #3b9c6f;
+}
+
+/* Minimal styling overrides */
+.VPHome {
+  padding: 0 !important;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
