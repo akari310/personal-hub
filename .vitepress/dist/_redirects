@@ -1,6 +1,37 @@
-# Cloudflare Pages Redirect Rules
-/go/gh      https://github.com/your-username            302
-/go/fb      https://facebook.com/your-profile           302
-/go/meet    https://meet.google.com/your-custom-room    302
-/go/cf      https://dash.cloudflare.com                 302
-/go/*       /                                           302
+# Redirects cho Go Subdomain
+https://go.akari.nx.kg/gh           https://github.com 302
+https://go.akari.nx.kg/github       https://github.com 302
+
+https://go.akari.nx.kg/ytb          https://youtube.com 302
+https://go.akari.nx.kg/yt           https://youtube.com 302
+https://go.akari.nx.kg/youtube      https://youtube.com 302
+
+https://go.akari.nx.kg/ytm          https://music.youtube.com 302
+
+https://go.akari.nx.kg/fb           https://facebook.com 302
+https://go.akari.nx.kg/face         https://facebook.com 302
+https://go.akari.nx.kg/facebook     https://facebook.com 302
+
+https://go.akari.nx.kg/msg          https://messenger.com 302
+https://go.akari.nx.kg/messenger    https://messenger.com 302
+
+https://go.akari.nx.kg/ig           https://instagram.com 302
+https://go.akari.nx.kg/insta        https://instagram.com 302
+https://go.akari.nx.kg/instagram    https://instagram.com 302
+
+https://go.akari.nx.kg/tw           https://x.com 302
+https://go.akari.nx.kg/x            https://x.com 302
+https://go.akari.nx.kg/twitter      https://x.com 302
+
+https://go.akari.nx.kg/rd           https://reddit.com 302
+https://go.akari.nx.kg/reddit       https://reddit.com 302
+
+https://go.akari.nx.kg/gpt          https://chatgpt.com 302
+https://go.akari.nx.kg/chatgpt      https://chatgpt.com 302
+
+# Nếu vào thẳng trang go mà không ghi đường dẫn gì, đẩy về trang chủ
+https://go.akari.nx.kg/             https://home.akari.nx.kg 302
+
+# Chuyển hướng cho note subdomain: tự động đẩy vào thư mục /notes/ của trang chủ
+https://note.akari.nx.kg/           https://home.akari.nx.kg/notes/ 301
+https://note.akari.nx.kg/*          https://home.akari.nx.kg/notes/:splat 301

@@ -1,37 +1,30 @@
-# Redirects cho Go Subdomain
-https://go.akari.nx.kg/gh           https://github.com 302
-https://go.akari.nx.kg/github       https://github.com 302
+# Redirects (áp dụng chung cho mọi subdomain, nhưng chủ yếu xài qua go.)
+/gh         https://github.com 302
+/github     https://github.com 302
 
-https://go.akari.nx.kg/ytb          https://youtube.com 302
-https://go.akari.nx.kg/yt           https://youtube.com 302
-https://go.akari.nx.kg/youtube      https://youtube.com 302
+/ytb        https://youtube.com 302
+/yt         https://youtube.com 302
+/youtube    https://youtube.com 302
 
-https://go.akari.nx.kg/ytm          https://music.youtube.com 302
+/ytm        https://music.youtube.com 302
 
-https://go.akari.nx.kg/fb           https://facebook.com 302
-https://go.akari.nx.kg/face         https://facebook.com 302
-https://go.akari.nx.kg/facebook     https://facebook.com 302
+/fb         https://facebook.com 302
+/face       https://facebook.com 302
+/facebook   https://facebook.com 302
 
-https://go.akari.nx.kg/msg          https://messenger.com 302
-https://go.akari.nx.kg/messenger    https://messenger.com 302
+/msg        https://messenger.com 302
+/messenger  https://messenger.com 302
 
-https://go.akari.nx.kg/ig           https://instagram.com 302
-https://go.akari.nx.kg/insta        https://instagram.com 302
-https://go.akari.nx.kg/instagram    https://instagram.com 302
+/ig         https://instagram.com 302
+/insta      https://instagram.com 302
+/instagram  https://instagram.com 302
 
-https://go.akari.nx.kg/tw           https://x.com 302
-https://go.akari.nx.kg/x            https://x.com 302
-https://go.akari.nx.kg/twitter      https://x.com 302
+/tw         https://x.com 302
+/x          https://x.com 302
+/twitter    https://x.com 302
 
-https://go.akari.nx.kg/rd           https://reddit.com 302
-https://go.akari.nx.kg/reddit       https://reddit.com 302
+/rd         https://reddit.com 302
+/reddit     https://reddit.com 302
 
-https://go.akari.nx.kg/gpt          https://chatgpt.com 302
-https://go.akari.nx.kg/chatgpt      https://chatgpt.com 302
-
-# Nếu vào thẳng trang go mà không ghi đường dẫn gì, đẩy về trang chủ
-https://go.akari.nx.kg/             https://home.akari.nx.kg 302
-
-# Chuyển hướng cho note subdomain: tự động đẩy vào thư mục /notes/ của trang chủ
-https://note.akari.nx.kg/           https://home.akari.nx.kg/notes/ 301
-https://note.akari.nx.kg/*          https://home.akari.nx.kg/notes/:splat 301
+/gpt        https://chatgpt.com 302
+/chatgpt    https://chatgpt.com 302

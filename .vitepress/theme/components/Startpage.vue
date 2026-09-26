@@ -1,5 +1,18 @@
 <script setup>
+import { ref, onMounted } from 'vue'
 import SearchBar from './SearchBar.vue'
+
+onMounted(() => {
+  // Thông minh chuyển hướng dựa trên tên miền hiện tại
+  const host = window.location.hostname
+  const path = window.location.pathname
+  
+  if (host.startsWith('note') && path === '/') {
+    window.location.href = '/notes/'
+  } else if (host.startsWith('go') && path === '/') {
+    window.location.href = 'https://home.akari.nx.kg'
+  }
+})
 </script>
 
 <template>
