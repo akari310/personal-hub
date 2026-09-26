@@ -165,7 +165,7 @@ import QuickLinks from './QuickLinks.vue'
   gap: 8px;
   height: 40px;
   padding: 0 18px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -214,7 +214,7 @@ import QuickLinks from './QuickLinks.vue'
   height: 40px;
   box-sizing: border-box;
   padding: 0 12px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.08);
