@@ -120,12 +120,15 @@ const handleSearch = () => {
   font-size: 16px;
   border: none;
   background: transparent;
-  color: #e8eaed; /* Dark mode text */
+  color: #fff; /* Dark mode text */
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
   outline: none;
   height: 100%;
 }
 
 .search-bar input::placeholder {
-  color: #9aa0a6; /* Dark mode placeholder */
+  color: #cdd6f4; /* Dark mode placeholder */
+  opacity: 1;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
 }
 </style>
