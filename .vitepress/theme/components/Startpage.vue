@@ -555,9 +555,15 @@ async function addLink() {
 }
 
 .icon-btn {
-  padding: 10px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .settings-section h3 {
