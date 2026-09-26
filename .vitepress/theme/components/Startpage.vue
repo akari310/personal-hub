@@ -48,7 +48,7 @@ import QuickLinks from './QuickLinks.vue'
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, rgba(30,30,46,0.2) 0%, rgba(17,17,27,0.8) 100%);
+  background: radial-gradient(circle at center, rgba(30,30,46,0) 0%, rgba(17,17,27,0.4) 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -195,6 +195,7 @@ import QuickLinks from './QuickLinks.vue'
   flex-direction: row;
   align-items: center;
   gap: 16px;
+  height: 40px;
   z-index: 100;
   color: #cdd6f4;
 }
@@ -210,7 +211,9 @@ import QuickLinks from './QuickLinks.vue'
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 12px;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0 12px;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
