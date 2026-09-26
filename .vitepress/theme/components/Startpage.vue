@@ -95,6 +95,20 @@ async function fetchLinks() {
   }
 }
 
+function openSettings() {
+  if (!githubToken.value) {
+    const token = prompt('Enter Admin Token to Unlock Settings:')
+    if (token) {
+      localStorage.setItem('gh_admin_token', token)
+      githubToken.value = token
+      isAdmin.value = true
+      showAddModal.value = true
+    }
+  } else {
+    showAddModal.value = true
+  }
+}
+
 async function addLink() {
   if (!newName.value || !newUrl.value) return alert('Name and URL are required')
   
@@ -174,6 +188,9 @@ async function addLink() {
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
         Notes
       </a>
+      <button @click="openSettings" class="hub-btn icon-btn" title="Page Settings">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
     </div>
 
     <div class="content-wrapper">
@@ -182,37 +199,37 @@ async function addLink() {
       </div>
 
       <!-- Quick Links Grid integrated smoothly -->
-      <div class="bookmarks-section" v-if="links.length > 0 || isAdmin">
+      <div class="bookmarks-section" v-if="links.length > 0">
         <div class="bento-grid">
           <a v-for="link in links" :key="link.url" :href="link.url" target="_blank" class="bento-card">
             <img :src="`https://www.google.com/s2/favicons?domain=${link.url}&sz=128`" :alt="link.name" class="bento-icon-img" />
             <span class="bento-name">{{ link.name }}</span>
           </a>
-          
-          <button v-if="isAdmin" class="bento-card add-btn" @click="showAddModal = true">
-            <span class="bento-icon-img add-icon">➕</span>
-            <span class="bento-name">Add New</span>
-          </button>
         </div>
       </div>
     </div>
     
-    <!-- Add Link Modal -->
+    <!-- Settings / Add Link Modal -->
     <transition name="fade">
       <div v-if="showAddModal" class="modal-overlay" @click.self="showAddModal = false">
         <div class="modal">
-          <h2>Add Quick Link</h2>
-          <div class="form-group">
-            <label>Name</label>
-            <input v-model="newName" type="text" placeholder="e.g. My Repo" />
+          <h2>Page Settings</h2>
+          
+          <div class="settings-section">
+            <h3>Add Quick Link</h3>
+            <div class="form-group">
+              <label>Name</label>
+              <input v-model="newName" type="text" placeholder="e.g. My Repo" />
+            </div>
+            <div class="form-group">
+              <label>URL</label>
+              <input v-model="newUrl" type="url" placeholder="https://..." />
+            </div>
           </div>
-          <div class="form-group">
-            <label>URL</label>
-            <input v-model="newUrl" type="url" placeholder="https://..." />
-          </div>
+          
           <div class="modal-actions">
-            <button @click="showAddModal = false" class="btn-cancel">Cancel</button>
-            <button @click="addLink" class="btn-save">Save to GitHub</button>
+            <button @click="showAddModal = false" class="btn-cancel">Close</button>
+            <button @click="addLink" class="btn-save">Add Link</button>
           </div>
         </div>
       </div>
@@ -342,16 +359,6 @@ async function addLink() {
   text-overflow: ellipsis;
   letter-spacing: 0.01em;
   padding-right: 8px;
-}
-
-.add-btn {
-  background: rgba(203, 166, 247, 0.05);
-  border: 1px dashed rgba(203, 166, 247, 0.3);
-  cursor: pointer;
-}
-.add-btn:hover {
-  background: rgba(203, 166, 247, 0.15);
-  border-style: solid;
 }
 
 /* Nav */
@@ -545,6 +552,21 @@ async function addLink() {
 .btn-save:hover {
   background: #b4befe;
   transform: translateY(-2px);
+}
+
+.icon-btn {
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.settings-section h3 {
+  font-size: 1.05rem;
+  color: #cdd6f4;
+  margin-top: 0;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 8px;
 }
 
 .fade-enter-active, .fade-leave-active {
