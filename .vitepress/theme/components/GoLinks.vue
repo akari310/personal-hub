@@ -113,6 +113,18 @@ async function addLink() {
 
 <template>
   <div class="go-page">
+    <!-- Hub Navigation Buttons (Top Right) -->
+    <div class="hub-nav">
+      <a href="/" class="hub-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Hub
+      </a>
+      <a href="/notes/" class="hub-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+        Notes
+      </a>
+    </div>
+
     <div class="go-header">
       <h1>🚀 Go Links</h1>
       <p>Quick access to my favorite spots.</p>
@@ -160,9 +172,43 @@ async function addLink() {
 .go-page {
   max-width: 800px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 80px 20px 40px; /* Increased top padding to avoid nav */
   min-height: 100vh;
 }
+
+.hub-nav {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  gap: 16px;
+  z-index: 100;
+}
+
+.hub-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: rgba(30, 30, 46, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #cdd6f4;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.hub-btn:hover {
+  background-color: rgba(203, 166, 247, 0.2);
+  border-color: #cba6f7;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
 
 .go-header {
   text-align: center;

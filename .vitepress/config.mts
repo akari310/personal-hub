@@ -8,8 +8,10 @@ export default defineConfig({
       provider: 'local'
     },
     nav: [
-      { text: 'Startpage', link: '/' },
-      { text: 'Cheatsheet', link: '/notes/' }
+      { text: 'Bio', link: 'https://akari.nx.kg' },
+      { text: 'Hub', link: '/' },
+      { text: 'Notes', link: '/notes/' },
+      { text: 'Go Links', link: '/go/' }
     ],
     sidebar: {
       '/notes/': [
