@@ -48,7 +48,7 @@ import QuickLinks from './QuickLinks.vue'
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, rgba(30,30,46,0) 0%, rgba(17,17,27,0.4) 100%);
+  background: radial-gradient(circle at center, rgba(30,30,46,0.2) 0%, rgba(17,17,27,0.8) 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -165,7 +165,7 @@ import QuickLinks from './QuickLinks.vue'
   gap: 8px;
   height: 40px;
   padding: 0 18px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -214,7 +214,7 @@ import QuickLinks from './QuickLinks.vue'
   height: 40px;
   box-sizing: border-box;
   padding: 0 12px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.08);
