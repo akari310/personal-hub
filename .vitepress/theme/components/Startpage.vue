@@ -8,9 +8,9 @@ onMounted(() => {
   const path = window.location.pathname
   
   if (host.startsWith('note') && path === '/') {
-    window.location.href = 'https://note.akari.nx.kg/notes/'
+    window.location.href = 'https://home.akari.nx.kg/notes/'
   } else if (host.startsWith('go') && path === '/') {
-    window.location.href = 'https://go.akari.nx.kg/go/'
+    window.location.href = 'https://home.akari.nx.kg/go/'
   }
 })
 </script>
@@ -23,11 +23,11 @@ onMounted(() => {
 
     <!-- Hub Navigation Buttons (Top Right) -->
     <div class="hub-nav">
-      <a href="https://note.akari.nx.kg" class="hub-btn">
+      <a href="/notes/" class="hub-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
         Notes
       </a>
-      <a href="https://go.akari.nx.kg" class="hub-btn">
+      <a href="/go/" class="hub-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
         Go Links
       </a>
