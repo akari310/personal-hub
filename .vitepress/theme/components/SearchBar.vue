@@ -4,10 +4,31 @@ import { ref } from 'vue'
 const query = ref('')
 
 const handleSearch = () => {
-  const q = query.value.trim()
+  const q = query.value.trim().toLowerCase()
   if (!q) return
-  // Only use Google Search
-  window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(q)
+
+  // Danh sách các lối tắt (shortcuts) sang mạng xã hội/web phổ biến
+  const shortcuts = [
+    'github', 'gh', 
+    'ytb', 'yt', 'youtube', 
+    'ytm', 
+    'fb', 'face', 'facebook', 
+    'ig', 'insta', 'instagram', 
+    'tw', 'x', 'twitter', 
+    'msg', 'messenger', 
+    'rd', 'reddit', 
+    'gpt', 'chatgpt'
+  ]
+
+  // Nếu người dùng nhập chuẩn 1 trong các từ khóa trên
+  if (shortcuts.includes(q)) {
+    // Chuyển hướng sang subdomain go để nó xử lý
+    window.location.href = `https://go.akari.nx.kg/${q}`
+    return
+  }
+
+  // Nếu không phải lối tắt thì tìm kiếm bằng Google
+  window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query.value.trim())
 }
 </script>
 
