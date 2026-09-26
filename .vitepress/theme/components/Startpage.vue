@@ -13,7 +13,46 @@ const repoOwner = 'akari310'
 const repoName = 'personal-hub'
 const filePath = 'public/links.json'
 
+// Clock and Weather
+const timeString = ref('')
+const weatherTemp = ref('--')
+const weatherIconUrl = ref('https://assets.msn.com/weathermapdata/1/static/weather/Icons/taskbar_v10/Condition_Card/MostlySunnyDay.svg')
+const msnLink = 'https://www.msn.com/vi-vn/weather/forecast/in-Y%C3%AAn-B%C3%A1i,Vi%E1%BB%87t-Nam'
+
+function updateClock() {
+  const now = new Date()
+  timeString.value = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', hour12: false })
+}
+
+async function fetchWeather() {
+  try {
+    const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=21.7167&longitude=104.8833&current_weather=true')
+    const data = await res.json()
+    if (data.current_weather) {
+      weatherTemp.value = Math.round(data.current_weather.temperature)
+      const code = data.current_weather.weathercode
+      const isDay = data.current_weather.is_day === 1
+      
+      let icon = isDay ? 'SunnyDayV3.svg' : 'ClearNightV3.svg'
+      if (code === 1 || code === 2) icon = isDay ? 'PartlyCloudyDayV3.svg' : 'PartlyCloudyNightV3.svg'
+      else if (code === 3) icon = 'CloudyV3.svg'
+      else if (code >= 45 && code <= 48) icon = 'FogV3.svg'
+      else if (code >= 51 && code <= 67) icon = 'LightRainV3.svg'
+      else if (code >= 80 && code <= 82) icon = isDay ? 'RainShowersDayV3.svg' : 'RainShowersNightV3.svg'
+      else if (code >= 95) icon = 'ThunderstormsV3.svg'
+      
+      weatherIconUrl.value = `https://assets.msn.com/weathermapdata/1/static/weather/Icons/taskbar_v10/Condition_Card/${icon}`
+    }
+  } catch(e) {
+    console.error('Weather error:', e)
+  }
+}
+
 onMounted(async () => {
+  updateClock()
+  setInterval(updateClock, 1000)
+  fetchWeather()
+  
   // Smart redirect if they accidentally land on the old note domain
   const host = window.location.hostname
   const path = window.location.pathname
@@ -115,6 +154,16 @@ async function addLink() {
 
 <template>
   <div class="startpage-overlay">
+    <!-- Clock and Weather (Top Left) -->
+    <div class="top-left-widget">
+      <div class="clock-display">{{ timeString }}</div>
+      <a :href="msnLink" target="_blank" class="weather-widget">
+        <span class="weather-location">Yên Bái</span>
+        <img :src="weatherIconUrl" class="weather-icon" alt="Weather" />
+        <span class="weather-temp">{{ weatherTemp }}°C</span>
+      </a>
+    </div>
+
     <!-- Hub Navigation Buttons (Top Right) -->
     <div class="hub-nav">
       <a href="https://akari.nx.kg" class="hub-btn">
@@ -337,6 +386,57 @@ async function addLink() {
   border-color: rgba(203, 166, 247, 0.5);
   color: #fff;
   transform: translateY(-2px);
+}
+
+/* Top Left Widget */
+.top-left-widget {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  z-index: 100;
+  color: #cdd6f4;
+}
+
+.clock-display {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.weather-widget {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(30, 30, 46, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  text-decoration: none;
+  color: #cdd6f4;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.weather-widget:hover {
+  background: rgba(203, 166, 247, 0.25);
+  transform: translateY(-2px);
+}
+
+.weather-location {
+  opacity: 0.9;
+}
+
+.weather-icon {
+  width: 24px;
+  height: 24px;
 }
 
 @keyframes fadeInUp {
