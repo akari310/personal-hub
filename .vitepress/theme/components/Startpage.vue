@@ -225,46 +225,49 @@ async function addLink() {
 }
 
 .bento-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
   width: 100%;
 }
 
 .bento-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 12px;
-  padding: 24px 16px;
+  padding: 8px 16px 8px 8px;
   background: rgba(30, 30, 46, 0.45);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
+  border-radius: 100px; /* Pill shape */
   text-decoration: none;
   color: #cdd6f4;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 140px;
 }
 
 .bento-card:hover {
-  transform: translateY(-4px) scale(1.03);
+  transform: translateY(-3px) scale(1.02);
   background: rgba(49, 50, 68, 0.7);
   border-color: rgba(203, 166, 247, 0.4);
-  box-shadow: 0 12px 24px rgba(203, 166, 247, 0.2);
+  box-shadow: 0 8px 20px rgba(203, 166, 247, 0.2);
 }
 
 .bento-icon-img {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   object-fit: cover;
   transition: transform 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  background-color: white; /* fallback for transparent favicons */
-  padding: 4px; /* padding for the white bg */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background-color: white; 
+  padding: 3px; 
+  flex-shrink: 0;
 }
 
 .bento-card:hover .bento-icon-img {
@@ -275,7 +278,7 @@ async function addLink() {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   background-color: transparent;
   box-shadow: none;
   padding: 0;
@@ -284,12 +287,12 @@ async function addLink() {
 .bento-name {
   font-weight: 600;
   font-size: 0.9rem;
-  text-align: center;
-  width: 100%;
+  text-align: left;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  padding-right: 8px;
 }
 
 .add-btn {
