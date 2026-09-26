@@ -391,6 +391,7 @@ async function addLink() {
   top: 24px;
   right: 32px;
   display: flex;
+  align-items: center;
   gap: 12px;
   z-index: 100;
 }
@@ -399,7 +400,8 @@ async function addLink() {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 18px;
+  height: 40px;
+  padding: 0 18px;
   background: rgba(30, 30, 46, 0.4);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -410,6 +412,7 @@ async function addLink() {
   font-size: 0.85rem;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  box-sizing: border-box;
 }
 
 .hub-btn:hover {
@@ -604,3 +607,6 @@ input:checked + .slider:before { transform: translateX(18px); }
 }
 
 </style>
+
+.icon-btn { width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; flex-shrink: 0; }
+
