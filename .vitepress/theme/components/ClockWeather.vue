@@ -41,9 +41,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="showWeather" class="top-left-widget">
+  <div class="top-left-widget">
     <div class="clock-display">{{ timeStr }}</div>
-    <a href="https://www.msn.com/vi-vn/weather" target="_blank" class="weather-widget" title="Nhấp để xem dự báo thời tiết MSN">
+    <a v-if="showWeather" href="https://www.msn.com/vi-vn/weather" target="_blank" class="weather-widget" title="Nhấp để xem dự báo thời tiết MSN">
       <span class="weather-icon">{{ weather.icon }}</span>
       <span class="weather-location">{{ weather.condition }} • {{ weather.temp }}°C</span>
     </a>
