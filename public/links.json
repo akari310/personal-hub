@@ -1,8 +1,36 @@
 [
-  { "name": "GitHub", "url": "https://github.com", "icon": "🐙" },
-  { "name": "Gmail", "url": "https://mail.google.com", "icon": "📧" },
-  { "name": "YouTube", "url": "https://youtube.com", "icon": "📺" },
-  { "name": "Notion", "url": "https://notion.so", "icon": "📓" },
-  { "name": "Twitter", "url": "https://twitter.com", "icon": "🐦" },
-  { "name": "ChatGPT", "url": "https://chat.openai.com", "icon": "🤖" }
+  {
+    "name": "GitHub",
+    "url": "https://github.com",
+    "icon": "🐙"
+  },
+  {
+    "name": "Gmail",
+    "url": "https://mail.google.com",
+    "icon": "📧"
+  },
+  {
+    "name": "YouTube",
+    "url": "https://youtube.com",
+    "icon": "📺"
+  },
+  {
+    "name": "Notion",
+    "url": "https://notion.so",
+    "icon": "📓"
+  },
+  {
+    "name": "Twitter",
+    "url": "https://twitter.com",
+    "icon": "🐦"
+  },
+  {
+    "name": "ChatGPT",
+    "url": "https://chat.openai.com",
+    "icon": "🤖"
+  },
+  {
+    "name": "ATK HUB",
+    "url": "https://hub.atk.pro/"
+  }
 ]
