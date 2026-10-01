@@ -97,19 +97,21 @@ async function addLink() {
   }
 }
 
-function openContextMenu(event, link, index) {
+function verifyAdminToken() {
   if (!githubToken.value) {
-    // Nhắc nhập token nếu chưa có (ngăn người lạ click)
     const token = prompt('Nhập Admin Token để chỉnh sửa/xóa liên kết:')
     if (token) {
       localStorage.setItem('gh_admin_token', token)
       githubToken.value = token
       isAdmin.value = true
-    } else {
-      return // Không có token thì không làm gì
+      return true
     }
+    return false
   }
-  
+  return true
+}
+
+function openContextMenu(event, link, index) {
   event.preventDefault()
   contextMenu.value = {
     show: true,
@@ -125,6 +127,10 @@ function closeContextMenu() {
 }
 
 function openEditModal() {
+  if (!verifyAdminToken()) {
+    closeContextMenu()
+    return
+  }
   const { link, index } = contextMenu.value
   newName.value = link.name
   newUrl.value = link.url
@@ -146,6 +152,10 @@ async function editLink() {
 }
 
 async function deleteLink() {
+  if (!verifyAdminToken()) {
+    closeContextMenu()
+    return
+  }
   const { link, index } = contextMenu.value
   if (confirm(`Bạn có chắc muốn xóa liên kết "${link.name}" không?`)) {
     const updatedLinks = [...links.value]
