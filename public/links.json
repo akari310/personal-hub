@@ -18,6 +18,11 @@
     "url": "https://music.youtube.com"
   },
   {
+    "name": "Twitter",
+    "url": "https://twitter.com",
+    "icon": "🐦"
+  },
+  {
     "name": "YouTube",
     "url": "https://youtube.com",
     "icon": "📺"
@@ -31,10 +36,5 @@
     "name": "Notion",
     "url": "https://notion.so",
     "icon": "📓"
-  },
-  {
-    "name": "Twitter",
-    "url": "https://twitter.com",
-    "icon": "🐦"
   }
 ]
