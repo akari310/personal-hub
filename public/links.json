@@ -10,6 +10,10 @@
     "icon": "📧"
   },
   {
+    "name": "ATK HUB",
+    "url": "https://hub.atk.pro/"
+  },
+  {
     "name": "YouTube",
     "url": "https://youtube.com",
     "icon": "📺"
@@ -32,9 +36,5 @@
     "name": "Twitter",
     "url": "https://twitter.com",
     "icon": "🐦"
-  },
-  {
-    "name": "ATK HUB",
-    "url": "https://hub.atk.pro/"
   }
 ]
