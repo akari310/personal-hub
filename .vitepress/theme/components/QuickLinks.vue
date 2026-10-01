@@ -112,6 +112,9 @@ function verifyAdminToken() {
 }
 
 function openContextMenu(event, link, index) {
+  // Chỉ bung menu Sửa/Xóa nếu đã là Admin (đã có Token)
+  if (!isAdmin.value) return
+  
   event.preventDefault()
   contextMenu.value = {
     show: true,
