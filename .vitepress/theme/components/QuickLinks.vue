@@ -25,6 +25,7 @@ async function fetchLinks() {
 
 let isSaving = false
 let pendingSave = null
+let lastKnownSha = null
 
 async function saveLinksToGithub(updatedLinks, commitMessage) {
   if (isSaving) {
@@ -51,11 +52,15 @@ async function doSaveLinksToGithub(updatedLinks, commitMessage) {
   }
 
   try {
-    const fileRes = await fetch('https://api.github.com/repos/akari310/personal-hub/contents/public/links.json', {
-      headers: { Authorization: `token ${githubToken.value}` },
-      cache: 'no-store'
-    })
-    const fileData = await fileRes.json()
+    let currentSha = lastKnownSha
+    if (!currentSha) {
+      const fileRes = await fetch('https://api.github.com/repos/akari310/personal-hub/contents/public/links.json', {
+        headers: { Authorization: `token ${githubToken.value}` },
+        cache: 'no-store'
+      })
+      const fileData = await fileRes.json()
+      currentSha = fileData.sha
+    }
 
     const res = await fetch('https://api.github.com/repos/akari310/personal-hub/contents/public/links.json', {
       method: 'PUT',
@@ -66,15 +71,21 @@ async function doSaveLinksToGithub(updatedLinks, commitMessage) {
       body: JSON.stringify({
         message: commitMessage,
         content: btoa(unescape(encodeURIComponent(JSON.stringify(updatedLinks, null, 2)))),
-        sha: fileData.sha
+        sha: currentSha
       })
     })
 
     if (res.ok) {
+      const responseData = await res.json()
+      lastKnownSha = responseData.content.sha
       links.value = updatedLinks
       return true
     } else {
       const errorData = await res.json()
+      // Nếu lỗi SHA, reset để fetch lại ở lần sau
+      if (errorData.message && errorData.message.includes('does not match')) {
+        lastKnownSha = null 
+      }
       alert('Failed to save links: ' + errorData.message)
       return false
     }
