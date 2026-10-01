@@ -25,6 +25,10 @@
     "icon": "🐦"
   },
   {
+    "name": "YouTube Music",
+    "url": "https://music.youtube.com"
+  },
+  {
     "name": "ChatGPT",
     "url": "https://chat.openai.com",
     "icon": "🤖"
@@ -32,9 +36,5 @@
   {
     "name": "ATK HUB",
     "url": "https://hub.atk.pro/"
-  },
-  {
-    "name": "YouTube Music",
-    "url": "https://music.youtube.com"
   }
 ]
