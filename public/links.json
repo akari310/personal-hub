@@ -18,14 +18,14 @@
     "url": "https://music.youtube.com"
   },
   {
-    "name": "ChatGPT",
-    "url": "https://chat.openai.com",
-    "icon": "🤖"
-  },
-  {
     "name": "YouTube",
     "url": "https://youtube.com",
     "icon": "📺"
+  },
+  {
+    "name": "ChatGPT",
+    "url": "https://chat.openai.com",
+    "icon": "🤖"
   },
   {
     "name": "Notion",
