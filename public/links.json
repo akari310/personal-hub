@@ -25,13 +25,13 @@
     "icon": "🐦"
   },
   {
-    "name": "YouTube Music",
-    "url": "https://music.youtube.com"
-  },
-  {
     "name": "ChatGPT",
     "url": "https://chat.openai.com",
     "icon": "🤖"
+  },
+  {
+    "name": "YouTube Music",
+    "url": "https://music.youtube.com"
   },
   {
     "name": "ATK HUB",
