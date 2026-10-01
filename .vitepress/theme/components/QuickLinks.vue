@@ -10,6 +10,7 @@ const isEditMode = ref(false)
 const newName = ref('')
 const newUrl = ref('')
 const editingIndex = ref(-1)
+const draggedIndex = ref(-1)
 
 async function fetchLinks() {
   try {
@@ -131,6 +132,38 @@ async function deleteLink(index, linkName) {
   }
 }
 
+function onDragStart(event, index) {
+  if (!isEditMode.value) return
+  draggedIndex.value = index
+  event.dataTransfer.effectAllowed = 'move'
+  // Slight delay before opacity change so drag image looks normal
+  setTimeout(() => {
+    event.target.style.opacity = '0.4'
+  }, 0)
+}
+
+function onDragEnd(event) {
+  event.target.style.opacity = '1'
+  draggedIndex.value = -1
+}
+
+async function onDrop(event, targetIndex) {
+  if (!isEditMode.value || draggedIndex.value === -1) return
+  
+  const sourceIndex = draggedIndex.value
+  if (sourceIndex !== targetIndex) {
+    const updatedLinks = [...links.value]
+    const [movedItem] = updatedLinks.splice(sourceIndex, 1)
+    updatedLinks.splice(targetIndex, 0, movedItem)
+    
+    // Cập nhật UI ngay lập tức
+    links.value = updatedLinks
+    
+    // Lưu thứ tự mới lên Github
+    await saveLinksToGithub(updatedLinks, `Reorder links`)
+  }
+}
+
 onMounted(() => {
   fetchLinks()
 })
@@ -140,7 +173,13 @@ onMounted(() => {
   <div class="bookmarks-section" v-if="showLinks && (links.length > 0 || isEditMode)">
     <div class="bento-grid">
       <!-- Quick Links -->
-      <div v-for="(link, index) in links" :key="link.url" class="bento-wrapper">
+      <div v-for="(link, index) in links" :key="link.url" class="bento-wrapper"
+           :draggable="isEditMode"
+           @dragstart="onDragStart($event, index)"
+           @dragend="onDragEnd($event)"
+           @dragover.prevent
+           @dragenter.prevent
+           @drop="onDrop($event, index)">
         <a :href="link.url" :target="isEditMode ? '_self' : '_blank'" class="bento-card" :class="{ 'edit-mode-active': isEditMode }" @click="handleLinkClick($event, link, index)">
           <img :src="`https://www.google.com/s2/favicons?domain=${link.url}&sz=128`" :alt="link.name" class="bento-icon-img" />
           <span class="bento-name">{{ link.name }}</span>
