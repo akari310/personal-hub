@@ -23,7 +23,29 @@ async function fetchLinks() {
   }
 }
 
+let isSaving = false
+let pendingSave = null
+
 async function saveLinksToGithub(updatedLinks, commitMessage) {
+  if (isSaving) {
+    pendingSave = { updatedLinks, commitMessage }
+    return true // Optimistically assume success for queued items
+  }
+  
+  isSaving = true
+  const success = await doSaveLinksToGithub(updatedLinks, commitMessage)
+  isSaving = false
+  
+  if (pendingSave) {
+    const nextSave = pendingSave
+    pendingSave = null
+    // Lệnh tiếp theo sẽ chạy ngầm
+    saveLinksToGithub(nextSave.updatedLinks, nextSave.commitMessage)
+  }
+  return success
+}
+
+async function doSaveLinksToGithub(updatedLinks, commitMessage) {
   if (!githubToken.value) {
     return alert('Admin token is required')
   }
