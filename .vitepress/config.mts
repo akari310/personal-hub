@@ -7,6 +7,10 @@ export default defineConfig({
   title: "Personal Hub",
   description: "Startpage & Cheatsheet",
   themeConfig: {
+    editLink: {
+      pattern: 'https://github.com/akari310/personal-hub/edit/main/:path',
+      text: 'Sửa trang này trên Github'
+    },
     search: {
       provider: 'local'
     },
