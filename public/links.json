@@ -14,11 +14,6 @@
     "url": "https://hub.atk.pro/"
   },
   {
-    "name": "YouTube",
-    "url": "https://youtube.com",
-    "icon": "📺"
-  },
-  {
     "name": "YouTube Music",
     "url": "https://music.youtube.com"
   },
@@ -26,6 +21,11 @@
     "name": "ChatGPT",
     "url": "https://chat.openai.com",
     "icon": "🤖"
+  },
+  {
+    "name": "YouTube",
+    "url": "https://youtube.com",
+    "icon": "📺"
   },
   {
     "name": "Notion",
