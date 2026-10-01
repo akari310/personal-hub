@@ -36,7 +36,8 @@ async function saveLinksToGithub(updatedLinks, commitMessage) {
 
   try {
     const fileRes = await fetch('https://api.github.com/repos/akari310/personal-hub/contents/public/links.json', {
-      headers: { Authorization: `token ${githubToken.value}` }
+      headers: { Authorization: `token ${githubToken.value}` },
+      cache: 'no-store'
     })
     const fileData = await fileRes.json()
 
