@@ -18,6 +18,11 @@
     "url": "https://music.youtube.com"
   },
   {
+    "name": "Notion",
+    "url": "https://notion.so",
+    "icon": "📓"
+  },
+  {
     "name": "Twitter",
     "url": "https://twitter.com",
     "icon": "🐦"
@@ -31,10 +36,5 @@
     "name": "ChatGPT",
     "url": "https://chat.openai.com",
     "icon": "🤖"
-  },
-  {
-    "name": "Notion",
-    "url": "https://notion.so",
-    "icon": "📓"
   }
 ]
