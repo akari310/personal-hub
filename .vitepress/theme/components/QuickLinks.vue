@@ -184,55 +184,59 @@ onUnmounted(() => {
     </div>
 
     <!-- Context Menu -->
-    <Teleport to="body">
-      <div v-if="contextMenu.show" class="context-menu" :style="{ top: contextMenu.y + 'px', left: contextMenu.x + 'px' }" @click.stop>
-        <div class="context-menu-item" @click="openEditModal">Sửa liên kết</div>
-        <div class="context-menu-item delete" @click="deleteLink">Xóa liên kết</div>
-      </div>
-    </Teleport>
+    <ClientOnly>
+      <Teleport to="body">
+        <div v-if="contextMenu.show" class="context-menu" :style="{ top: contextMenu.y + 'px', left: contextMenu.x + 'px' }" @click.stop>
+          <div class="context-menu-item" @click="openEditModal">Sửa liên kết</div>
+          <div class="context-menu-item delete" @click="deleteLink">Xóa liên kết</div>
+        </div>
+      </Teleport>
+    </ClientOnly>
 
     <!-- Modals -->
-    <Teleport to="body">
-      <transition name="fade">
-        <div v-if="showAddModal" class="modal-overlay" @click.self="showAddModal = false">
-          <div class="modal">
-            <h2>Thêm liên kết mới</h2>
-            <div class="form-group">
-              <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">Tên web</label>
-              <input v-model="newName" type="text" placeholder="VD: Github" />
-            </div>
-            <div class="form-group">
-              <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">URL</label>
-              <input v-model="newUrl" type="url" placeholder="https://..." />
-            </div>
-            <div class="modal-actions" style="display:flex; justify-content:flex-end; gap: 12px; margin-top: 24px;">
-              <button @click="showAddModal = false" class="btn-cancel">Hủy</button>
-              <button @click="addLink" class="btn-save">Lưu Liên kết</button>
-            </div>
-          </div>
-        </div>
-      </transition>
-      
-      <transition name="fade">
-        <div v-if="showEditModal" class="modal-overlay" @click.self="showEditModal = false">
-          <div class="modal">
-            <h2>Sửa liên kết</h2>
-            <div class="form-group">
-              <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">Tên web</label>
-              <input v-model="newName" type="text" placeholder="VD: Github" />
-            </div>
-            <div class="form-group">
-              <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">URL</label>
-              <input v-model="newUrl" type="url" placeholder="https://..." />
-            </div>
-            <div class="modal-actions" style="display:flex; justify-content:flex-end; gap: 12px; margin-top: 24px;">
-              <button @click="showEditModal = false" class="btn-cancel">Hủy</button>
-              <button @click="editLink" class="btn-save">Cập nhật</button>
+    <ClientOnly>
+      <Teleport to="body">
+        <transition name="fade">
+          <div v-if="showAddModal" class="modal-overlay" @click.self="showAddModal = false">
+            <div class="modal">
+              <h2>Thêm liên kết mới</h2>
+              <div class="form-group">
+                <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">Tên web</label>
+                <input v-model="newName" type="text" placeholder="VD: Github" />
+              </div>
+              <div class="form-group">
+                <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">URL</label>
+                <input v-model="newUrl" type="url" placeholder="https://..." />
+              </div>
+              <div class="modal-actions" style="display:flex; justify-content:flex-end; gap: 12px; margin-top: 24px;">
+                <button @click="showAddModal = false" class="btn-cancel">Hủy</button>
+                <button @click="addLink" class="btn-save">Lưu Liên kết</button>
+              </div>
             </div>
           </div>
-        </div>
-      </transition>
-    </Teleport>
+        </transition>
+        
+        <transition name="fade">
+          <div v-if="showEditModal" class="modal-overlay" @click.self="showEditModal = false">
+            <div class="modal">
+              <h2>Sửa liên kết</h2>
+              <div class="form-group">
+                <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">Tên web</label>
+                <input v-model="newName" type="text" placeholder="VD: Github" />
+              </div>
+              <div class="form-group">
+                <label style="display:block; margin-bottom: 8px; color: #a6adc8; font-size: 0.9rem;">URL</label>
+                <input v-model="newUrl" type="url" placeholder="https://..." />
+              </div>
+              <div class="modal-actions" style="display:flex; justify-content:flex-end; gap: 12px; margin-top: 24px;">
+                <button @click="showEditModal = false" class="btn-cancel">Hủy</button>
+                <button @click="editLink" class="btn-save">Cập nhật</button>
+              </div>
+            </div>
+          </div>
+        </transition>
+      </Teleport>
+    </ClientOnly>
   </div>
 </template>
 
