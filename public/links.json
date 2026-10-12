@@ -33,13 +33,13 @@
     "icon": "🤖"
   },
   {
+    "name": "Photos",
+    "url": "https://photos.google.com/"
+  },
+  {
     "name": "Notion",
     "url": "https://notion.so",
     "icon": "📓"
-  },
-  {
-    "name": "Photos",
-    "url": "https://photos.google.com/"
   },
   {
     "name": "Valorant Stats",
