@@ -38,11 +38,11 @@
     "icon": "📓"
   },
   {
-    "name": "Valorant Stats",
-    "url": "https://tracker.gg/valorant"
-  },
-  {
     "name": "Photos",
     "url": "https://photos.google.com/"
+  },
+  {
+    "name": "Valorant Stats",
+    "url": "https://tracker.gg/valorant"
   }
 ]
