@@ -33,7 +33,7 @@ export default defineConfig({
       ]
     },
     socialLinks: [
-      { icon: 'github', link: 'https://github.com' }
+      { icon: 'github', link: 'https://github.com/akari310' }
     ]
   },
   ignoreDeadLinks: true
