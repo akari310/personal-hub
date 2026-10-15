@@ -1,6 +1,6 @@
 # Redirects (áp dụng chung cho mọi subdomain, nhưng chủ yếu xài qua go.)
-/gh         https://github.com 302
-/github     https://github.com 302
+/gh         https://github.com/akari310 302
+/github     https://github.com/akari310 302
 
 /ytb        https://youtube.com 302
 /yt         https://youtube.com 302
