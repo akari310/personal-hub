@@ -4,6 +4,9 @@ export default defineConfig({
   router: {
     prefetchLinks: false
   },
+  sitemap: {
+    hostname: 'https://home.akari.nx.kg'
+  },
   title: "Personal Hub",
   description: "Startpage & Cheatsheet",
   themeConfig: {
